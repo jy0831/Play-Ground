@@ -31,13 +31,18 @@ const router = createRouter({
     },
     {
       path: '/canvas',
-      name: 'CanvasView',
+      name: 'Canvas',
       component: () => import('../views/CanvasView.vue')
     },
     {
       path: '/socket',
       name: 'WebSocket',
       component: () => import('../views/WebSocket.vue')
+    },
+    {
+      path: '/scroll',
+      name: 'Scroll',
+      component: () => import('../views/ScrollView.vue')
     }
   ]
 })
