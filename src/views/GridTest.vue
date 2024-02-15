@@ -48,6 +48,8 @@ const list = ref([]);
 const listSize = ref(40);
 const pageCnt = ref(20);
 const scrEvt = ref(false);
+
+// Make Mockup Data
 const scrollUpdate = () => {
     if (!scrEvt.value) return;
     for (let idx = 1; idx <= pageCnt.value; idx++) {
@@ -60,6 +62,7 @@ const scrollUpdate = () => {
     }
 }
 onBeforeMount(() => {
+    // Make Mockup Data
     for (let i = 0; i < listSize.value; i++) {
         list.value.push({
             'name': 'Item Title',
