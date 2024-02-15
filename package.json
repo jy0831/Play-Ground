@@ -1,7 +1,11 @@
 {
-  "name": "dino",
-  "version": "0.0.0",
+  "name": "PlayGround",
+  "version": "1.0.0",
   "private": true,
+  "author": {
+    "name": "jy0831",
+    "email": "hamachi271@gmail.com"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
