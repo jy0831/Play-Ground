@@ -1,0 +1,106 @@
+.frame {
+    height: auto;
+    background-color: rgb(95, 175, 114);
+    margin-block: 30px;
+    padding-block: 50px;
+    padding-inline: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .sub_title {
+    font-size: 25px;
+    font-weight: 600;
+    padding: 8px 12px;
+    background-color: burlywood;
+  }
+  
+  .layout {
+    overflow-y: scroll;
+    height: 850px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 13px 10px;
+    padding-inline: 10px;
+    padding-block: 15px;
+    width: fit-content;
+    background-color: rgb(243, 187, 253);
+    width: v-bind(layoutW + 'px');
+  }
+  
+  .layout::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .layout::-webkit-scrollbar-thumb {
+    background: rgb(185, 122, 220);
+    border-radius: 10px;
+  }
+  
+  .layout::-webkit-scrollbar-track {
+    position: absolute;
+    background: rgba(220, 20, 60, .1);
+  }
+  
+  .item {
+    transition: all .3s;
+    width: v-bind((childW + 10)+'px');
+    height: v-bind((childH + 10)+'px');
+    font-size: 35px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: aquamarine;
+  }
+  
+  .item:hover>:not(.__dialog) {
+    scale: 1.03;
+  }
+  
+  .child {
+    width: v-bind(childW + 'px');
+    height: v-bind(childH + 'px');
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: cornflowerblue;
+    transition: all .3s;
+  }
+  
+  .child:active {
+    background-color: rgb(102, 237, 100);
+  }
+  
+  .blur {
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    background-color: #00000080;
+    position: fixed;
+    z-index: 10;
+  }
+  
+  .__dialog {
+    transform: translate(v-bind(dialogW + 'px'), v-bind(dialogH + 'px'));
+    /* background-color: chocolate; */
+    background-color: #eeeeee;
+    width: 512px;
+    height: 264px;
+    z-index: 11;
+    position: absolute;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding-inline: 10px;
+    border-radius: 12px;
+    gap: 10px;
+  }
