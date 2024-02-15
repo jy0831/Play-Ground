@@ -5,6 +5,7 @@ import AppHeader from './layouts/AppHeader.vue'
 
 <template>
   <AppHeader></AppHeader>
+
   <RouterView />
 </template>
 
@@ -13,7 +14,7 @@ import AppHeader from './layouts/AppHeader.vue'
 body,
 html {
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 #app {
@@ -23,6 +24,6 @@ html {
 
 body {
   margin: 0px;
-  background-color: rgba(119, 166, 255, 0.195);
+  background-color: #fffdff;
 }
 </style>

@@ -23,7 +23,7 @@ const dialogH = ref(0);
 const childW = ref(0);
 const childH = ref(0);
 const selectCompoIdx = ref(null);
-const rowCnt = ref(6);
+const rowCnt = ref(4);
 const layoutW = ref();
 const frameW = ref();
 const scollFun = (e) => {
@@ -58,13 +58,9 @@ const openDialog = (e, idx) => {
 
 <style>
 .frame {
-  /* height: auto; */
-  height: 850px;
-  background-color: rgb(95, 175, 114);
-  margin-block: 30px;
-  margin-inline: v-bind(frameW + 'px');
-  padding-block: 50px;
-  padding-inline: 20px;
+  height: 100%;
+  background-color: rgb(88, 187, 112);
+  padding-block: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -77,7 +73,6 @@ const openDialog = (e, idx) => {
   font-size: 25px;
   font-weight: 600;
   padding: 8px 12px;
-  background-color: burlywood;
 }
 
 .layout {
@@ -102,10 +97,6 @@ const openDialog = (e, idx) => {
   border-radius: 10px;
 }
 
-.frame::-webkit-scrollbar-track {
-  position: absolute;
-  background: rgba(220, 20, 60, .1);
-}
 
 .item {
   transition: all .3s;
@@ -133,6 +124,7 @@ const openDialog = (e, idx) => {
   justify-content: space-evenly;
   align-items: center;
   background-color: cornflowerblue;
+  border-radius: 5px;
   transition: all .3s;
 }
 

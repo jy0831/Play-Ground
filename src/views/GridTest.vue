@@ -41,7 +41,7 @@
 import GridLayout from "@/components/GridLayout.vue";
 import { onBeforeMount, reactive, ref } from "vue";
 const childRect = reactive({
-    width: 250,
+    width: 260,
     height: 300
 });
 const list = ref([]);
