@@ -4,7 +4,8 @@
     <div class="layout" @scroll="scollFun($event)">
       <div class="item" v-for="(item, idx) of props.list" :key="item.imgUrl">
         <slot :openDialog="openDialog" :class="['child', `child-${idx}`, { __dialog: selectCompoIdx === idx }]"
-          :data="item" :idx="idx"></slot>
+          :data="item" :idx="idx" :selectIdx="selectCompoIdx">
+        </slot>
       </div>
     </div>
   </div>
@@ -13,7 +14,7 @@
 <script setup>
 import { ref, defineProps, onBeforeMount, defineEmits } from "vue";
 
-const props = defineProps(['list', 'childRect']);
+const props = defineProps(['list', 'childRect', 'row', 'gapRow', 'gapColumn']);
 const emit = defineEmits(['scrollUpdate']);
 const isBlur = ref(false);
 const frame = ref(null);
@@ -22,10 +23,15 @@ const dialogW = ref(0);
 const dialogH = ref(0);
 const childW = ref(0);
 const childH = ref(0);
+
 const selectCompoIdx = ref(null);
-const rowCnt = ref(4);
 const layoutW = ref();
 const frameW = ref();
+const rowCnt = ref(4);
+
+const rowGap = ref(0);
+const columnGap = ref(0);
+
 const scollFun = (e) => {
   const div = document.querySelector('.layout');
   if (div.scrollHeight - div.scrollTop === div.clientHeight) {
@@ -33,10 +39,14 @@ const scollFun = (e) => {
   }
 }
 onBeforeMount(() => {
+  rowCnt.value = props.row || 4;
+  rowGap.value = props.gapRow || 0;
+  columnGap.value = props.gapColumn || 0;
   childW.value = props.childRect.width;
   childH.value = props.childRect.height;
-  layoutW.value = ((childW.value + 10) * rowCnt.value) + (10 * (rowCnt.value - 1)) + 8;
+  layoutW.value = ((childW.value) * rowCnt.value) + (rowGap.value * (rowCnt.value - 1));
   frameW.value = (window.innerWidth - (layoutW.value + 70)) / 2;
+  console.log(rowCnt.value);
 });
 const clickDialog = (e) => {
   selectCompoIdx.value = null;
@@ -81,7 +91,7 @@ const openDialog = (e, idx) => {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  gap: 13px 10px;
+  gap: v-bind(columnGap + 'px') v-bind(rowGap + 'px');
   padding-inline: 10px;
   padding-block: 15px;
   background-color: rgb(243, 187, 253);
@@ -100,15 +110,16 @@ const openDialog = (e, idx) => {
 
 .item {
   transition: all .3s;
-  width: v-bind((childW + 10)+'px');
-  height: v-bind((childH + 10)+'px');
+  width: v-bind((childW)+'px');
+  height: v-bind((childH)+'px');
+  /* padding: 10px; */
   font-size: 35px;
   font-weight: 700;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
 }
 
 .item:hover>:not(.__dialog) {
@@ -123,7 +134,7 @@ const openDialog = (e, idx) => {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  background-color: cornflowerblue;
+  /* background-color: cornflowerblue; */
   border-radius: 5px;
   transition: all .3s;
 }

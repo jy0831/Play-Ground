@@ -1,12 +1,20 @@
 <template>
-    <GridLayout @scrollUpdate="scrollUpdate" :list="list" :childRect="childRect" v-slot="props">
+    <GridLayout 
+        @scrollUpdate="scrollUpdate" 
+        v-slot="props" 
+        :list="list" 
+        :childRect="childRect" 
+        :row="4" 
+        :gapRow="12"
+        :gapColumn="13"
+    >
         <div @click="props.openDialog($event, props.idx)" :class="props.class">
             <img class="cover_img" :src="props.data.imgUrl" alt="">
             <div class="cover_main">
                 <span class="cover_main__decript">
                     {{ props.data.name + (props.idx + 1) }}
                 </span>
-                <div v-if="props.class.includes('__dialog')">{{ props.data.decript }}</div>
+                <div v-if="props.selectIdx === props.idx">{{ props.data.decript }}</div>
             </div>
         </div>
     </GridLayout>
@@ -17,9 +25,11 @@
     object-fit: cover;
     width: 240px;
     height: 240px;
+    border-radius: 6px;
+    transition: all 0.3s;
 }
 
-.__dialog>.cover_main {
+.cover_main {
     height: 100%;
 }
 
@@ -30,7 +40,7 @@
     font-size: 15px;
 }
 
-.__dialog>.cover_main>.cover_main__decript {
+.cover_main>.cover_main__decript {
     font-size: 25px;
     font-weight: 600;
     padding-block: 10px;
@@ -41,7 +51,7 @@
 import GridLayout from "@/components/GridLayout.vue";
 import { onBeforeMount, reactive, ref } from "vue";
 const childRect = reactive({
-    width: 260,
+    width: 240,
     height: 300
 });
 const list = ref([]);
